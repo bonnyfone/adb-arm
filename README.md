@@ -11,13 +11,13 @@ References
 
 
 
- Requirements
+Requirements
 --
  - a Git client
  - an **ARM cross compile toolchain** (you can get one from [YOCTOproject])
  
 
- Setup
+Setup
 --
 The script should be ready to execute without any configuration, except for the *TOOLCHAIN* variable inside **makefile.sample**:
 
@@ -32,14 +32,14 @@ CXX=$(CC)
 ...
 ```
 
- Run
+Run
 --
 ```
 sh adb-download-make.sh
 ```
 If the script compile successfully, you will find the **adb** executable in your current directory. If something went wrong, feel free to open an issue with your error. **You can also use the pre-compiled ARM binary (adb-arm-binary)**.
 
- Verify binary
+Verify binary
 --
  - Verify architecture
 ``` file adb-arm-binary```
