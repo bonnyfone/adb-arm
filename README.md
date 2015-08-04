@@ -1,4 +1,5 @@
 # ADB for ARM
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-adb--arm-green.svg?style=flat)](https://android-arsenal.com/details/1/2232)
 
 This is an *all-in-one* script to build the Android **adb** tool (*v. 1.0.31*) for **ARM architecture**. When executed, the script will download all the necessary files and it will run a custom makefile to build the adb.
 
