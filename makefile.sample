@@ -1,13 +1,6 @@
 # ADB makefile
 # ------------
 
-#TODO change TOOLCHAIN variable to your toolchain path 
-TOOLCHAIN= /opt/poky/1.5/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-
-CC= $(TOOLCHAIN)gcc
-LD= $(TOOLCHAIN)gcc
-CXX=$(CC)
-
-
 SRCS+= adb.c
 SRCS+= fdevent.c
 SRCS+= adb_client.c
@@ -58,12 +51,11 @@ CPPFLAGS+= -DHAVE_TERMIO_H
 CPPFLAGS+= -DHAVE_SYS_SOCKET_H
 CPPFLAGS+= -D_GNU_SOURCE
 CPPFLAGS+= -D_XOPEN_SOURCE
-CPPFLAGS+= -std=c++11 
 CPPFLAGS+= -I.
 CPPFLAGS+= -I../include
 CPPFLAGS+= -I../../../external/zlib
 CPPFLAGS+= -I../../../external/openssl/include
-CPPFLAGS+= -I../base/include 
+CPPFLAGS+= -I../base/include
 CFLAGS+= -O2 -g -Wall -Wno-unused-parameter
 
 LIBS= -lcrypto -lpthread -lrt 
@@ -73,8 +65,7 @@ OBJS= $(SRCS:.c=.o)
 all: adb
  
 adb: $(OBJS)
-	$(LD) -o $@ $(LDFLAGS) $(OBJS) $(LIBS)
+	$(CC) -o $@ $(LDFLAGS) $(OBJS) $(LIBS)
  
 clean:
 	rm -rf $(OBJS)
-

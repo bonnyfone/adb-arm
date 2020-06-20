@@ -1,0 +1,13 @@
+diff --git a/adb/usb_linux.c b/adb/usb_linux.c
+index 7bf20575..656e0d01 100644
+--- a/adb/usb_linux.c
++++ b/adb/usb_linux.c
+@@ -13,7 +13,7 @@
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  */
+-
++#include <sys/sysmacros.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>

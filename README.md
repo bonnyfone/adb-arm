@@ -3,6 +3,9 @@
 
 This is an *all-in-one* script to build the Android **adb** tool (*v. 1.0.31*) for **ARM architecture**. When executed, the script will download all the necessary files and it will run a custom makefile to build the adb.
 
+The current script is able to build the latest Android 4 branch. Building Android 5 or newer will require further modification. 
+Even if old, the binary has been successfully used for installing APK's on Chrome OS 83.
+
 References
 --
 
@@ -15,21 +18,20 @@ References
 Requirements
 --
  - a Git client
- - an **ARM cross compile toolchain** (you can get one from [YOCTOproject])
+ - an **ARM cross compile toolchain** providing an environment script. The script has been written for [YOCTOproject].
+   For example, install
+   [this toolchain](http://downloads.yoctoproject.org/releases/yocto/yocto-3.1/toolchain/x86_64/poky-glibc-x86_64-core-image-sato-aarch64-qemuarm64-toolchain-3.1.sh)
+   for compiling for aarch64 on x86_64.
  
 
 Setup
 --
-The script should be ready to execute without any configuration, except for the *TOOLCHAIN* variable inside **makefile.sample**:
+The script should be ready to execute without any configuration, except for the sourced environment inside **adb-download-make.sh**:
 
 ```
 ...
-#TODO change TOOLCHAIN variable to your toolchain path 
-TOOLCHAIN= /opt/poky/1.5/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-
-
-CC= $(TOOLCHAIN)gcc
-LD= $(TOOLCHAIN)gcc
-CXX=$(CC)
+#TODO change to your toolchain path
+source /opt/poky/3.1/environment-setup-aarch64-poky-linux
 ...
 ```
 
@@ -43,9 +45,9 @@ If the script compile successfully, you will find the **adb** executable in your
 Verify binary
 --
  - Verify architecture
-``` file adb-arm-binary```
+``` file adb```
  - Verify dependecies
-``` objdump -x adb-arm-binary | grep NEEDED ```
+``` objdump -x adb | grep NEEDED ```
 
 License
 ----
@@ -77,7 +79,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 For more information, please refer to <http://unlicense.org/>
 ```
 
-[YOCTOproject]:http://downloads.yoctoproject.org/releases/yocto/yocto-1.5/toolchain/
+[YOCTOproject]:http://downloads.yoctoproject.org/releases/yocto/yocto-3.1/toolchain/
 [Android.ServerBox]:http://android.serverbox.ch/?p=1217
 [XDA]:http://forum.xda-developers.com/showthread.php?t=1924492
 [StackOverflow]:http://stackoverflow.com/questions/5904765/build-android-adb-for-arm-processor
